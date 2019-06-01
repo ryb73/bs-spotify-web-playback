@@ -188,10 +188,10 @@
     "@ryb73/decco" "0.0.14"
     qs "6.7.0"
 
-"@ryb73/bs-spotify-web-api@^4.0.0-typed-scope.5":
-  version "4.0.0-typed-scope.5"
-  resolved "https://registry.yarnpkg.com/@ryb73/bs-spotify-web-api/-/bs-spotify-web-api-4.0.0-typed-scope.5.tgz#9388e6e84994b42c983c73ad0d348a09bf4f6018"
-  integrity sha512-nVQTZ59xohbdk7gvJ7nhRYuSEfPJT2bFLEgN9mASLehetSTPukias30k8ttZWAT0c5dQEQcmSK5byE0lVZE8Dw==
+"@ryb73/bs-spotify-web-api@^4.0.0-typed-scope.6":
+  version "4.0.0-typed-scope.6"
+  resolved "https://registry.yarnpkg.com/@ryb73/bs-spotify-web-api/-/bs-spotify-web-api-4.0.0-typed-scope.6.tgz#2694bdabd67a5f7da29a370568b8d8f9c0dc363e"
+  integrity sha512-SU6u4+45c7O4sWj9Dt0fO12arbeX5C8K3MiovsaQqgrbXQ8XxJ3xkcC2S9yDg8oogX0uDAY9pASc38jTzH5wmA==
   dependencies:
     "@ryb73/bs-qs" "3.0.8"
     "@ryb73/bs-superagent" "0.0.13"
