@@ -1,44 +1,66 @@
-open Spotify.Access;
+open Spotify;
+open Access;
 
 type player;
-[@decco] type error = { message: string, };
-[@decco] type initializationError = error;
-[@decco] type authenticationError = error;
-[@decco] type accountError = error;
-[@decco] type playbackError = error;
-[@decco] type webPlaybackPlayer = {
-    device_id: string,
-};
-[@decco] type context = {
-    uri: option(string),
-    metadata: option(Js.Json.t),
-};
+
 [@decco] type disallows = {
     pausing: bool,
-    peeking_next: bool,
-    peeking_prev: bool,
+    peekingNext: bool,
+    peekingPrev: bool,
     resuming: bool,
     seeking: bool,
-    skipping_next: bool,
-    skipping_prev: bool,
+    skippingNext: bool,
+    skippingPrev: bool,
 };
-[@decco] type trackWindow = {
-    current_track: Js.Json.t,
-    previous_tracks: array(Js.Json.t),
-    next_tracks: array(Js.Json.t),
+
+type repeatMode = NoRepeat | RepeatTrack | RepeatContext;
+
+module WebPlayback: {
+    [@decco] type error = { message: string, };
+    [@decco] type initializationError = error;
+    [@decco] type authenticationError = error;
+    [@decco] type accountError = error;
+    [@decco] type playbackError = error;
+    [@decco] type player = {
+        deviceId: string,
+    };
+    [@decco] type context = {
+        uri: option(string),
+        metadata: Js.Json.t,
+    };
+    [@decco] type trackWindow = {
+        currentTrack: Js.Json.t,
+        previousTracks: array(Js.Json.t),
+        nextTracks: array(Js.Json.t),
+    };
+    [@decco] type nonrec repeatMode = repeatMode;
+    [@decco] type state = {
+        context: context,
+        disallows: disallows,
+        trackWindow: trackWindow,
+        paused: bool,
+        position: int,
+        repeatMode: repeatMode,
+        shuffle: bool,
+    };
 };
-[@decco] type repeatMode =
-    | NoRepeat
-    | RepeatOnce
-    | RepeatForever;
-[@decco] type webPlaybackState = {
-    context: context,
-    disallows: disallows,
-    track_window: trackWindow,
-    paused: bool,
-    position: int,
-    repeat_mode: repeatMode,
-    shuffle: bool,
+
+module PlayerInfo: {
+    [@decco]
+    type actions = {
+        disallows: disallows,
+    };
+
+    [@decco] type nonrec repeatMode = repeatMode;
+
+    [@decco]
+    type t = {
+        actions: actions,
+        [@decco.key "progress_ms"] progressMs: option(int),
+        [@decco.key "repeat_state"] repeatState: repeatMode,
+        [@decco.key "shuffle_state"] shuffleState: bool,
+        item: option(Types.Track.t),
+    };
 };
 
 let sdkInitialized: Js.Promise.t(unit);
@@ -52,21 +74,21 @@ let connect: player => unit;
 let disconnect: player => unit;
 
 let onInitializationError:
-    (Belt.Result.t(error, Decco.decodeError) => unit, player) => player;
+    (Belt.Result.t(WebPlayback.error, Decco.decodeError) => unit, player) => player;
 let onAuthenticationError:
-    (Belt.Result.t(error, Decco.decodeError) => unit, player) => player;
+    (Belt.Result.t(WebPlayback.error, Decco.decodeError) => unit, player) => player;
 let onAccountError:
-    (Belt.Result.t(error, Decco.decodeError) => unit, player) => player;
+    (Belt.Result.t(WebPlayback.error, Decco.decodeError) => unit, player) => player;
 let onPlaybackError:
-    (Belt.Result.t(error, Decco.decodeError) => unit, player) => player;
+    (Belt.Result.t(WebPlayback.error, Decco.decodeError) => unit, player) => player;
 let onReady:
-    (Belt.Result.t(webPlaybackPlayer, Decco.decodeError) => unit,
+    (Belt.Result.t(WebPlayback.player, Decco.decodeError) => unit,
     player) => player;
 let onNotReady:
-    (Belt.Result.t(webPlaybackPlayer, Decco.decodeError) => unit,
+    (Belt.Result.t(WebPlayback.player, Decco.decodeError) => unit,
     player) => player;
 let onPlayerStateChanged:
-    (Belt.Result.t(option(webPlaybackState), Decco.decodeError) => unit,
+    (Belt.Result.t(option(WebPlayback.state), Decco.decodeError) => unit,
     player) => player;
 
 let play:
@@ -83,3 +105,11 @@ let playUris:
       token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
       Js.Array.t(string))
     => Js.Promise.t(unit);
+let pause:
+    (~deviceId: string=?,
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
+    => Js.Promise.t(unit);
+
+let getPlayerInfo:
+    token(scope(_,_,_,_,_,_,_,_,_,_,_,userReadPlaybackState,_,_,_,_,_,_))
+    => Js.Promise.t(Belt.Result.t(PlayerInfo.t, Decco.decodeError));

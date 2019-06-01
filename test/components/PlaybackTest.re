@@ -1,5 +1,6 @@
 open React;
 open Belt.Result;
+open Js.Promise;
 
 type playerState = {
     player: SpotifyPlayback.player,
@@ -28,7 +29,7 @@ type action =
     | SetPlayer(SpotifyPlayback.player, string, string);
 
 let displayError = fun
-    | Ok({ SpotifyPlayback.message }) => message
+    | Ok({ SpotifyPlayback.WebPlayback.message }) => message
     | Error(e) => "couldn't decode error " ++ Belt.Option.getExn(Js.Json.stringifyAny(e));
 
 let initialState = {
@@ -54,6 +55,13 @@ let reducer = (state, action) =>
             })
         }
     };
+
+let catchAndLog = (message, promise) =>
+    promise
+    |> catch(err => {
+        Js.log2(message, err);
+        resolve ();
+    });
 
 let noopSubmit = (e) => ReactEvent.Form.preventDefault(e);
 
@@ -81,11 +89,11 @@ let make = (~token) => {
         |> onNotReady((result) => Js.log2("not ready", result))
         |> onPlayerStateChanged(fun
             | Ok(None) => send(ClearPlayer)
-            | Ok(Some(state)) => Js.log2("state changed", state)
+            | Ok(Some(state)) => Js.log2("state changed", WebPlayback.state_encode(state))
             | error => Js.log2("state error", error)
         )
         |> onReady(fun
-            | Ok({ device_id }) => send(SetPlayer(player, playerName, device_id))
+            | Ok({ deviceId }) => send(SetPlayer(player, playerName, deviceId))
             | error => Js.log2("ready but error", error)
         )
         |> connect;
@@ -102,8 +110,15 @@ let make = (~token) => {
                 let uris = Js.String.split(",", uris);
                 SpotifyPlayback.playUris(~deviceId?, ~positionMs?, token, uris);
             }
-        };
-        ();
+        }
+        |> ignore;
+    };
+
+    let doPause = (_) => {
+        let deviceId = deviceId == "" ? None : Some(deviceId);
+        SpotifyPlayback.pause(~deviceId?, token)
+        |> catchAndLog("pause error")
+        |> ignore;
     };
 
     let deviceIdChanged = (e) =>
@@ -139,6 +154,12 @@ let make = (~token) => {
             | None => ReasonReact.null
         };
 
+    let getPlayer = (_) =>
+        SpotifyPlayback.getPlayerInfo(token)
+        |> PromEx.map(Js.log2("player info"))
+        |> catchAndLog("player info err")
+        |> ignore;
+
     initialized ?
         <form className="col card" onSubmit=noopSubmit>
             <h2>(string("Playback"))</h2>
@@ -161,6 +182,17 @@ let make = (~token) => {
                     onChange=urisChanged />
                 <input type_="text" value=positionMs placeholder="positionMs"
                     onChange=positionMsChanged />
+            </div>
+
+            <div>
+                <button onClick=doPause>(string("Pause"))</button>
+
+                <input type_="text" value=deviceId placeholder="deviceId"
+                    onChange=deviceIdChanged />
+            </div>
+
+            <div>
+                <button onClick=getPlayer>(string("Get Player Info"))</button>
             </div>
 
             (activePlayer)
