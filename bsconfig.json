@@ -1,12 +1,27 @@
 {
-    "name" : "bs-spotify-web-playback",
-    "sources" : [
-        { "dir" : "src" },
+    "name": "bs-spotify-web-playback",
+    "bs-dependencies": [
+        "@ryb73/bs-spotify-web-api",
+        "@ryb73/bs-superagent",
+        "@ryb73/decco",
+        "@ryb73/prom-ex",
+        "@ryb73/re-dom",
+    ],
+    "bs-dev-dependencies": [
+        "@ryb73/bs-qs",
+        "bs-css",
+        "reason-react",
+    ],
+    "sources": [
+        { "dir": "src" },
         {
             "dir": "test",
-            "type": "dev"
+            "type": "dev",
+            "subdirs": true,
         }
     ],
     "refmt": 3,
+    "ppx-flags": ["@ryb73/decco/ppx/ppx_decco.sh"],
+    "reason": { "react-jsx": 3 },
     "bsc-flags": [ "-w -10", "-bs-super-errors" ]
 }
