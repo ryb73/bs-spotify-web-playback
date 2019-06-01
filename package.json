@@ -28,7 +28,7 @@
     "url": "git@github.com:ryb73/bs-spotify-web-playback.git"
   },
   "peerDependencies": {
-    "bs-platform": "^2.0.0"
+    "bs-platform": "^5.0.0"
   },
   "devDependencies": {
     "@ryb73/bs-qs": "^3.0.8",
