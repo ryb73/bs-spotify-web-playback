@@ -1,5 +1,5 @@
 {
-    "name": "bs-spotify-web-playback",
+    "name": "@ryb73/bs-spotify-web-playback",
     "bs-dependencies": [
         "@ryb73/bs-spotify-web-api",
         "@ryb73/bs-superagent",
