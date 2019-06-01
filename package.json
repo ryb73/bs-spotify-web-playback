@@ -1,16 +1,24 @@
 {
-  "name": "bs-spotify-web-playback",
-  "version": "1.0.0",
+  "name": "@ryb73/bs-spotify-web-playback",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
   "description": "Bucklescript bindings for the Spotify Web Playback SDK https://developer.spotify.com/documentation/web-playback-sdk/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Warning: no test specified\" && exit 1",
+    "test": "echo \"Warning: no test specified\"",
     "build": "npm run clean && bsb -make-world",
     "watch": "npm run clean && bsb -make-world -w",
     "webpack-test": "webpack -w",
     "clean": "rm -rf lib/ && rm -rf test/js/ && bsb -clean-world",
     "postinstall": "[ ! -f package-links.json ] || ppl link-file"
   },
+  "files": [
+    "/bsconfig.json",
+    "/src",
+    "/lib/js/src"
+  ],
   "keywords": [],
   "license": "MIT",
   "author": "Ryan Biwer",
