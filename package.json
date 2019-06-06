@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bucklescript bindings for the Spotify Web Playback SDK https://developer.spotify.com/documentation/web-playback-sdk/",
   "main": "index.js",
   "scripts": {
