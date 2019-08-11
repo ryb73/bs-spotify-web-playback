@@ -73,7 +73,9 @@ let make = (~token) => {
 
     useEffect0(() => {
         SpotifyPlayback.sdkInitialized
-        |> PromEx.map((_) => send(SetInitialized));
+        |> PromEx.map((_) => send(SetInitialized))
+        |> catch(_ => Js.log("initialization error") |> resolve)
+        |> ignore;
         None;
     });
 
