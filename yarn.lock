@@ -218,15 +218,15 @@
     "@ryb73/decco" "0.1.0"
     qs "6.7.0"
 
-"@ryb73/bs-spotify-web-api@^4.0.0-typed-scope.18":
-  version "4.0.0-typed-scope.18"
-  resolved "https://registry.yarnpkg.com/@ryb73/bs-spotify-web-api/-/bs-spotify-web-api-4.0.0-typed-scope.18.tgz#3a6cc18bb45edad70f9145c5194eb68952965a25"
-  integrity sha512-DxHGTKbOtgKc2nBnmY1/XAon5cSrpvne7JasLevJkdgOnpfUu/jk9gnO6OWUEmJzGcVwi9rF5EpZbygxAI1ZDA==
+"@ryb73/bs-spotify-web-api@^4.0.0-typed-scope.19":
+  version "4.0.0-typed-scope.19"
+  resolved "https://registry.yarnpkg.com/@ryb73/bs-spotify-web-api/-/bs-spotify-web-api-4.0.0-typed-scope.19.tgz#e52e31602915db102f34d58477bbd18b5ee95f9b"
+  integrity sha512-X830CmFpC8FjvR1d8AzTdOn15xJBLF+892samFX+T2VkiEht/RjgJjXHCP5F9q9Ra4TcZP5jODAZZ51fu2pMwQ==
   dependencies:
     "@ryb73/bs-qs" "3.0.9"
     "@ryb73/bs-superagent" "0.2.3"
     "@ryb73/decco" "0.1.0"
-    "@ryb73/prom-ex" "0.2.0"
+    "@ryb73/prom-ex" "0.3.1"
     "@ryb73/re-dom" "0.1.1"
 
 "@ryb73/bs-superagent@0.2.3", "@ryb73/bs-superagent@^0.2.3":
@@ -248,10 +248,12 @@
   resolved "https://registry.yarnpkg.com/@ryb73/opt-ex/-/opt-ex-0.2.0.tgz#aab6e4abeb866c0ce55e560ea940e61e9fa79c8f"
   integrity sha512-YNXe9s/lOAQr8YxvKtKjw/W5h6KO8rEHq8K6xRFXt837nw1O0zhQ8lklBG/u9eCqljl0NugAZlK/v8xs3vCYZQ==
 
-"@ryb73/prom-ex@0.2.0", "@ryb73/prom-ex@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ryb73/prom-ex/-/prom-ex-0.2.0.tgz#4989a8622323fa4c8080aed47eb8c3e64775707e"
-  integrity sha512-G7xb6ZK/+LPmgfmo0olJ0bOaze+40hhJpEMhKqABUIhcgGHEtPKolTGOmxbkkevOlrPuyajoTWBykTQzEXbMRw==
+"@ryb73/prom-ex@0.3.1", "@ryb73/prom-ex@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@ryb73/prom-ex/-/prom-ex-0.3.1.tgz#f0ba7aa154a951216e7615e8379a1ed1c8820626"
+  integrity sha512-vCONYDTTshO/faBqonBXn7rw8pLvO3N0P9YI4nvL6iXGmBtxCRwurFIte4hgdrvbOvRJ32xmx52SK9Qs5zYiPw==
+  dependencies:
+    let-anything "^1.0.3"
 
 "@ryb73/re-dom@0.1.1", "@ryb73/re-dom@^0.1.1":
   version "0.1.1"
@@ -741,6 +743,18 @@ bs-platform@^5.0.6:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.0.6.tgz#88c13041fb020479800de3d82c680bf971091425"
   integrity sha512-6Boa2VEcWJp2WJr38L7bp3J929nYha7gDarjxb070jWzgfPJ/WbzjipmSfnu2eqqk1MfjEIpBipbPz6n1NISwA==
+
+bsb-native@4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/bsb-native/-/bsb-native-4.0.6.tgz#5c0289e24e0a3375ebf8f69a17510b884cace1ca"
+  integrity sha512-T1MkndnmA4StiKK2UvEftrqANN+h9StlLghBbwmKa833d97D86np+2wmIOw5Rqy6rNW3D076A2G51mooWTUwfQ==
+  dependencies:
+    yauzl "^2.9.1"
+
+buffer-crc32@~0.2.3:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
+  integrity sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
 
 buffer-from@^1.0.0:
   version "1.1.1"
@@ -1396,6 +1410,13 @@ fast-safe-stringify@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
   integrity sha512-q8BZ89jjc+mz08rSxROs8VsrBBcn1SIw1kq9NjolL509tkABRk9io01RAjSaEv1Xb2uFLt8VtRiZbGp5H8iDtg==
 
+fd-slicer@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fd-slicer/-/fd-slicer-1.1.0.tgz#25c7c89cb1f9077f8891bbe61d8f390eae256f1e"
+  integrity sha1-JcfInLH5B3+IkbvmHY85Dq4lbx4=
+  dependencies:
+    pend "~1.2.0"
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
@@ -2007,6 +2028,13 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
+let-anything@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/let-anything/-/let-anything-1.0.3.tgz#0e870607e37ee9ec3793a973e8cd48a59817edf4"
+  integrity sha512-cq3cWtklrAy2B+Fcl/PodvaCRGl2RDP2NjwFogsqRXE7Q1nsEtHpFlL1PmgNRj0+7bSYtt5fEyQmPmHlVTzvNQ==
+  dependencies:
+    bsb-native "4.0.6"
+
 loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -2586,6 +2614,11 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+pend@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
+  integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
 
 pify@^4.0.1:
   version "4.0.1"
@@ -3437,10 +3470,10 @@ watchpack@^1.6.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
-webpack-cli@^3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.6.tgz#2c8c399a2642133f8d736a359007a052e060032c"
-  integrity sha512-0vEa83M7kJtxK/jUhlpZ27WHIOndz5mghWL2O53kiDoA9DIxSKnfqB92LoqEn77cT4f3H2cZm1BMEat/6AZz3A==
+webpack-cli@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.7.tgz#77c8580dd8e92f69d635e0238eaf9d9c15759a91"
+  integrity sha512-OhTUCttAsr+IZSMVwGROGRHvT+QAs8H6/mHIl4SvhAwYywjiylYjpwybGx7WQ9Hkb45FhjtsymkwiRRbGJ1SZQ==
   dependencies:
     chalk "2.4.2"
     cross-spawn "6.0.5"
@@ -3462,10 +3495,10 @@ webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.39.1:
-  version "4.39.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.1.tgz#60ed9fb2b72cd60f26ea526c404d2a4cc97a1bd8"
-  integrity sha512-/LAb2TJ2z+eVwisldp3dqTEoNhzp/TLCZlmZm3GGGAlnfIWDgOEE758j/9atklNLfRyhKbZTCOIoPqLJXeBLbQ==
+webpack@^4.39.2:
+  version "4.39.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.2.tgz#c9aa5c1776d7c309d1b3911764f0288c8c2816aa"
+  integrity sha512-AKgTfz3xPSsEibH00JfZ9sHXGUwIQ6eZ9tLN8+VLzachk1Cw2LVmy+4R7ZiwTa9cZZ15tzySjeMui/UnSCAZhA==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
@@ -3570,3 +3603,11 @@ yargs@13.2.4:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.0"
+
+yauzl@^2.9.1:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/yauzl/-/yauzl-2.10.0.tgz#c7eb17c93e112cb1086fa6d8e51fb0667b79a5f9"
+  integrity sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=
+  dependencies:
+    buffer-crc32 "~0.2.3"
+    fd-slicer "~1.1.0"
