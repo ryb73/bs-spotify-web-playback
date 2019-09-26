@@ -255,12 +255,19 @@
   dependencies:
     let-anything "^1.0.3"
 
-"@ryb73/re-dom@0.1.1", "@ryb73/re-dom@^0.1.1":
+"@ryb73/re-dom@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@ryb73/re-dom/-/re-dom-0.1.1.tgz#8714fe9b1b5cacd069839b2b61fd43715494200a"
   integrity sha512-kAfkB9cnRnghs6fr0WISW9iDYmq7pdChQZPUccvCm2yvlYSjfq+VOXJGa5QswYjH8z+C1W/hBhhLdKegEjASdA==
   dependencies:
     "@babel/core" "^7.5.5"
+    "@ryb73/decco" "0.1.0"
+
+"@ryb73/re-dom@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@ryb73/re-dom/-/re-dom-0.1.3.tgz#82b0ffa07b891d635ead74a847b6ed5291fc9de6"
+  integrity sha512-BmoK8eseX0C0MWSiXp5YDegTzfgDEQ6iwQu2otfVOVlb09r0xi/Y8DP/PphdBNLQCIIuTeiOo/dlqE2kSjtCpg==
+  dependencies:
     "@ryb73/decco" "0.1.0"
 
 "@webassemblyjs/ast@1.8.5":
@@ -732,10 +739,10 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-bs-css@^9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/bs-css/-/bs-css-9.0.1.tgz#105733f880bfb2dc1d1dfd3174b60b35c381ee6f"
-  integrity sha512-EnEWGMearvX1SpnM0s6rRvKGeiNM5SyvU1BzoYJvtaTR3WE3RUqUc5cCVWDInT1SNUwi4uBo4BfBakzWt9MZww==
+bs-css@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/bs-css/-/bs-css-10.0.1.tgz#75d12ff4f8127027085e02a9839bffd9f4c7f0fe"
+  integrity sha512-VXOCznoY1UnI86P/UKEEvuIH2UlYt+djzpCyAixhm6US8piNEv7bdFh9iYNWjm58PDwlXd84BRQEnQKZ4ZNGYA==
   dependencies:
     emotion "^10.0.7"
 
@@ -3470,10 +3477,10 @@ watchpack@^1.6.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
-webpack-cli@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.7.tgz#77c8580dd8e92f69d635e0238eaf9d9c15759a91"
-  integrity sha512-OhTUCttAsr+IZSMVwGROGRHvT+QAs8H6/mHIl4SvhAwYywjiylYjpwybGx7WQ9Hkb45FhjtsymkwiRRbGJ1SZQ==
+webpack-cli@^3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.9.tgz#79c27e71f94b7fe324d594ab64a8e396b9daa91a"
+  integrity sha512-xwnSxWl8nZtBl/AFJCOn9pG7s5CYUYdZxmmukv+fAHLcBIHM36dImfpQg3WfShZXeArkWlf6QRw24Klcsv8a5A==
   dependencies:
     chalk "2.4.2"
     cross-spawn "6.0.5"
@@ -3495,10 +3502,10 @@ webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.39.2:
-  version "4.39.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.2.tgz#c9aa5c1776d7c309d1b3911764f0288c8c2816aa"
-  integrity sha512-AKgTfz3xPSsEibH00JfZ9sHXGUwIQ6eZ9tLN8+VLzachk1Cw2LVmy+4R7ZiwTa9cZZ15tzySjeMui/UnSCAZhA==
+webpack@^4.41.0:
+  version "4.41.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.0.tgz#db6a254bde671769f7c14e90a1a55e73602fc70b"
+  integrity sha512-yNV98U4r7wX1VJAj5kyMsu36T8RPPQntcb5fJLOsMz/pt/WrKC0Vp1bAlqPLkA1LegSwQwf6P+kAbyhRKVQ72g==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
