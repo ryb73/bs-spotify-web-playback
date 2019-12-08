@@ -1,5 +1,4 @@
 open React;
-open Belt.Result;
 open Js.Promise;
 
 type playerState = {
@@ -29,7 +28,7 @@ type action =
     | SetPlayer(SpotifyPlayback.player, string, string);
 
 let displayError = fun
-    | Ok({ SpotifyPlayback.WebPlayback.message }) => message
+    | Belt.Result.Ok({ SpotifyPlayback.WebPlayback.message }) => message
     | Error(e) => "couldn't decode error " ++ Belt.Option.getExn(Js.Json.stringifyAny(e));
 
 let initialState = {
@@ -90,12 +89,12 @@ let make = (~token) => {
         |> onPlaybackError((error) => Js.log2("bak error", displayError(error)))
         |> onNotReady((result) => Js.log2("not ready", result))
         |> onPlayerStateChanged(fun
-            | Ok(None) => send(ClearPlayer)
+            | Belt.Result.Ok(None) => send(ClearPlayer)
             | Ok(Some(state)) => Js.log2("state changed", WebPlayback.state_encode(state))
             | error => Js.log2("state error", error)
         )
         |> onReady(fun
-            | Ok({ deviceId }) => send(SetPlayer(player, playerName, deviceId))
+            | Belt.Result.Ok({ deviceId }) => send(SetPlayer(player, playerName, deviceId))
             | error => Js.log2("ready but error", error)
         )
         |> connect;

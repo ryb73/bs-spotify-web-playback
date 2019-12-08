@@ -3,9 +3,9 @@
     "bs-dependencies": [
         "@ryb73/bs-spotify-web-api",
         "@ryb73/bs-superagent",
-        "@ryb73/decco",
         "@ryb73/prom-ex",
         "@ryb73/re-dom",
+        "decco",
     ],
     "bs-dev-dependencies": [
         "@ryb73/bs-qs",
@@ -21,7 +21,10 @@
         }
     ],
     "refmt": 3,
-    "ppx-flags": ["@ryb73/decco/ppx/ppx_decco.sh"],
+    "ppx-flags": ["decco/ppx"],
     "reason": { "react-jsx": 3 },
-    "bsc-flags": [ "-w -105", "-bs-super-errors" ]
+    "warnings": {
+        "number": "+A-4-9-40-41-42-48-105"
+    },
+    "bsc-flags": [ "-bs-super-errors" ]
 }

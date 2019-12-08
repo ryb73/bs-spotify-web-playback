@@ -1,5 +1,4 @@
 open ReDom;
-open Belt.Result;
 open Spotify;
 
 type player;
@@ -51,7 +50,7 @@ module WebPlayback = {
         |> Js.Json.number;
     let repeatMode_decode = (j) =>
         switch (Js.Json.classify(j)) {
-            | Js.Json.JSONNumber(0.) => Ok(NoRepeat)
+            | Js.Json.JSONNumber(0.) => Belt.Result.Ok(NoRepeat)
             | Js.Json.JSONNumber(1.) => Ok(RepeatContext)
             | Js.Json.JSONNumber(2.) => Ok(RepeatTrack)
             | _ => Decco.error("Invalid enum value", j)
@@ -85,7 +84,7 @@ module PlayerInfo = {
         |> Js.Json.string;
     let repeatMode_decode = (j) =>
         switch (Js.Json.classify(j)) {
-            | Js.Json.JSONString("off") => Ok(NoRepeat)
+            | Js.Json.JSONString("off") => Belt.Result.Ok(NoRepeat)
             | Js.Json.JSONString("track") => Ok(RepeatTrack)
             | Js.Json.JSONString("context") => Ok(RepeatContext)
             | _ => Decco.error("Invalid enum value", j)
