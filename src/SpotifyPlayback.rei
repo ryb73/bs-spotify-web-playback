@@ -67,7 +67,7 @@ let sdkInitialized: Js.Promise.t(unit);
 
 /** (token, playerName) => player */
 let makePlayer:
-    (token(scope(_,_,_,_,_,_,_,_,userReadPrivate,userReadEmail,userReadBirthdate,_,_,streaming,_,_,_,_)),
+    (token(scope(_,_,_,_,_,_,_,_,userReadPrivate,userReadEmail,_,_,streaming,_,_,_,_)),
         string)
     => player;
 let connect: player => unit;
@@ -93,23 +93,23 @@ let onPlayerStateChanged:
 
 let play:
     (~deviceId: string=?, ~positionMs: int=?,
-      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
     => Js.Promise.t(unit);
 let playContext:
     (~deviceId: string=?, ~positionMs: int=?,
-      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
       string)
     => Js.Promise.t(unit);
 let playUris:
     (~deviceId: string=?, ~positionMs: int=?,
-      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
       Js.Array.t(string))
     => Js.Promise.t(unit);
 let pause:
     (~deviceId: string=?,
-      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
     => Js.Promise.t(unit);
 
 let getPlayerInfo:
-    token(scope(_,_,_,_,_,_,_,_,_,_,_,userReadPlaybackState,_,_,_,_,_,_))
+    token(scope(_,_,_,_,_,_,_,_,_,_,userReadPlaybackState,_,_,_,_,_,_))
     => Js.Promise.t(Belt.Result.t(PlayerInfo.t, Decco.decodeError));

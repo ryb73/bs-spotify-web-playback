@@ -20,7 +20,6 @@ let scope = Access.(scope
 // |> withUserTopRead
 |> withUserReadPrivate
 |> withUserReadEmail
-|> withUserReadBirthdate
 |> withUserReadPlaybackState
 // |> withUserReadCurrentlyPlaying
 |> withStreaming
