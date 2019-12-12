@@ -39,7 +39,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "@ryb73/bs-spotify-web-api": "^4.0.0-typed-scope.21",
+    "@ryb73/bs-spotify-web-api": "^4.0.0-typed-scope.24",
     "@ryb73/bs-superagent": "^0.4.0",
     "@ryb73/re-dom": "^0.2.0",
     "decco": "^1.1.0"

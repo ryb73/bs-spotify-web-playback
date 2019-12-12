@@ -123,24 +123,24 @@ let makePlayer = (accessToken, name) =>
 [@bs.send] external disconnect : player => unit = "";
 
 [@bs.send.pipe: player]
-external _addListener : string => (Js.Json.t => unit) => unit = "addListener";
+external addListener : string => (Js.Json.t => unit) => unit = "addListener";
 
-let _listener = (event, decoder, cb, player) => {
-    _addListener(event, (res) => {
+let listener = (event, decoder, cb, player) => {
+    addListener(event, (res) => {
         cb(decoder(res))
     }, player);
     player;
 };
 
-let onInitializationError = _listener("initialization_error", WebPlayback.error_decode);
-let onAuthenticationError = _listener("authentication_error", WebPlayback.error_decode);
-let onAccountError = _listener("account_error", WebPlayback.error_decode);
-let onPlaybackError = _listener("playback_error", WebPlayback.error_decode);
-let onReady = _listener("ready", WebPlayback.player_decode);
-let onNotReady = _listener("not_ready", WebPlayback.player_decode);
-let onPlayerStateChanged = _listener("player_state_changed", Decco.optionFromJson(WebPlayback.state_decode));
+let onInitializationError = listener("initialization_error", WebPlayback.error_decode);
+let onAuthenticationError = listener("authentication_error", WebPlayback.error_decode);
+let onAccountError = listener("account_error", WebPlayback.error_decode);
+let onPlaybackError = listener("playback_error", WebPlayback.error_decode);
+let onReady = listener("ready", WebPlayback.player_decode);
+let onNotReady = listener("not_ready", WebPlayback.player_decode);
+let onPlayerStateChanged = listener("player_state_changed", Decco.optionFromJson(WebPlayback.state_decode));
 
-let _play = (~deviceId=?, ~contextUri=?, ~uris=?, ~positionMs=?, accessToken) => {
+let doPlay = (~deviceId=?, ~contextUri=?, ~uris=?, ~positionMs=?, accessToken) => {
     open! Belt.Option;
 
     Api.(buildPut(accessToken, "/me/player/play")
@@ -161,13 +161,13 @@ let _play = (~deviceId=?, ~contextUri=?, ~uris=?, ~positionMs=?, accessToken) =>
 };
 
 let play = (~deviceId=?, ~positionMs=?, accessToken) =>
-    _play(~deviceId?, ~positionMs?, accessToken);
+    doPlay(~deviceId?, ~positionMs?, accessToken);
 
 let playContext = (~deviceId=?, ~positionMs=?, accessToken, contextUri) =>
-    _play(~deviceId?, ~positionMs?, ~contextUri, accessToken);
+    doPlay(~deviceId?, ~positionMs?, ~contextUri, accessToken);
 
 let playUris = (~deviceId=?, ~positionMs=?, accessToken, uris) =>
-    _play(~deviceId?, ~positionMs?, ~uris, accessToken);
+    doPlay(~deviceId?, ~positionMs?, ~uris, accessToken);
 
 let pause = (~deviceId=?, accessToken) => {
     Api.(buildPut(accessToken, "/me/player/pause")
