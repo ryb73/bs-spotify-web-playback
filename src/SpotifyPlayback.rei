@@ -109,6 +109,12 @@ let pause:
     (~deviceId: string=?,
       token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)))
     => Js.Promise.t(unit);
+/** (~deviceId=?, accessToken, positionMs) => promise(unit) */
+let seek:
+    (~deviceId: string=?,
+      token(scope(_,_,_,_,_,_,_,_,_,_,_,_,_,_,userModifyPlaybackState,_,_)),
+      int)
+    => Js.Promise.t(unit)
 
 let getPlayerInfo:
     token(scope(_,_,_,_,_,_,_,_,_,_,userReadPlaybackState,_,_,_,_,_,_))

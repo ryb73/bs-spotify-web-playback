@@ -115,12 +115,25 @@ let make = (~token) => {
         |> ignore;
     };
 
-    let doPause = (_) => {
-        let deviceId = deviceId == "" ? None : Some(deviceId);
-        SpotifyPlayback.pause(~deviceId?, token)
-        |> catchAndLog("pause error")
-        |> ignore;
-    };
+    let doPause = useCallback2(
+        (_) => {
+            let deviceId = deviceId == "" ? None : Some(deviceId);
+            SpotifyPlayback.pause(~deviceId?, token)
+            |> catchAndLog("pause error")
+            |> ignore;
+        },
+        (deviceId, token)
+    );
+
+    let doSeek = useCallback3(
+        (_) => {
+            let deviceId = deviceId == "" ? None : Some(deviceId);
+            SpotifyPlayback.seek(~deviceId?, token, positionMs |> int_of_string)
+            |> catchAndLog("pause error")
+            |> ignore;
+        },
+        (deviceId, token, positionMs)
+    );
 
     let deviceIdChanged = (e) =>
         send(SetDeviceId(ReactEvent.Form.currentTarget(e)##value));
@@ -187,6 +200,7 @@ let make = (~token) => {
 
             <div>
                 <button onClick=doPause>(string("Pause"))</button>
+                <button onClick=doSeek>(string("Seek"))</button>
 
                 <input type_="text" value=deviceId placeholder="deviceId"
                     onChange=deviceIdChanged />

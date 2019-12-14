@@ -176,6 +176,14 @@ let pause = (~deviceId=?, accessToken) => {
     |> PromEx.map(_ => ()));
 };
 
+let seek = (~deviceId=?, accessToken, positionMs) => Superagent.(
+    Api.(buildPut(accessToken, "/me/player/seek")
+    |> query("position_ms", positionMs |> string_of_int)
+    |> setOptionalQueryParam("device_id", deviceId)
+    |> end_
+    |> PromEx.map(_ => ()))
+);
+
 let getPlayerInfo = (accessToken) =>
     Api.buildGet(accessToken, "/me/player")
     |> Superagent.end_
