@@ -91,11 +91,11 @@ let make = (~token) => {
         |> onPlayerStateChanged(fun
             | Belt.Result.Ok(None) => send(ClearPlayer)
             | Ok(Some(state)) => Js.log2("state changed", WebPlayback.state_encode(state))
-            | error => Js.log2("state error", error)
+            | Error(error) => Js.log2("state error", error)
         )
         |> onReady(fun
             | Belt.Result.Ok({ deviceId }) => send(SetPlayer(player, playerName, deviceId))
-            | error => Js.log2("ready but error", error)
+            | Error(error) => Js.log2("ready but error", error)
         )
         |> connect;
     };
@@ -155,12 +155,21 @@ let make = (~token) => {
         SpotifyPlayback.disconnect(player);
     };
 
+    let getState = (player, _) =>
+        SpotifyPlayback.getCurrentState(player)
+        |> PromEx.map(Js.log2("current state"))
+        |> catchAndLog("current state err")
+        |> ignore;
+
     let activePlayer =
         switch player {
-            | Some({ name, deviceId }) =>
+            | Some({ name, deviceId, player }) =>
                 <div>
                     <div>(string("Active player: " ++ name))</div>
                     <div>(string("Device ID: " ++ deviceId))</div>
+                    <div>
+                        <button onClick=(getState(player))>(string("Get Current State"))</button>
+                    </div>
                     <div>
                         <button onClick=disconnectPlayer>(string("Disconnect"))</button>
                     </div>
@@ -200,10 +209,18 @@ let make = (~token) => {
 
             <div>
                 <button onClick=doPause>(string("Pause"))</button>
+
+                <input type_="text" value=deviceId placeholder="deviceId"
+                    onChange=deviceIdChanged />
+            </div>
+
+            <div>
                 <button onClick=doSeek>(string("Seek"))</button>
 
                 <input type_="text" value=deviceId placeholder="deviceId"
                     onChange=deviceIdChanged />
+                <input type_="text" value=positionMs placeholder="positionMs"
+                    onChange=positionMsChanged />
             </div>
 
             <div>

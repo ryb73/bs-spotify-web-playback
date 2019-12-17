@@ -1,5 +1,6 @@
 open ReDom;
 open Spotify;
+open PromEx;
 
 type player;
 
@@ -173,7 +174,7 @@ let pause = (~deviceId=?, accessToken) => {
     Api.(buildPut(accessToken, "/me/player/pause")
     |> setOptionalQueryParam("device_id", deviceId)
     |> Superagent.end_
-    |> PromEx.map(_ => ()));
+    |> map(_ => ()));
 };
 
 let seek = (~deviceId=?, accessToken, positionMs) => Superagent.(
@@ -181,12 +182,18 @@ let seek = (~deviceId=?, accessToken, positionMs) => Superagent.(
     |> query("position_ms", positionMs |> string_of_int)
     |> setOptionalQueryParam("device_id", deviceId)
     |> end_
-    |> PromEx.map(_ => ()))
+    |> map(_ => ()))
 );
 
 let getPlayerInfo = (accessToken) =>
     Api.buildGet(accessToken, "/me/player")
     |> Superagent.end_
-    |> PromEx.map(({ Superagent.body }) => body)
-    |> PromEx.map(Belt.Option.getExn)
-    |> PromEx.map(PlayerInfo.t_decode);
+    |> map(({ Superagent.body }) => body)
+    |> map(Belt.Option.getExn)
+    |> map(PlayerInfo.t_decode);
+
+[@bs.send] external getCurrentState: player => Js.Promise.t(Js.Json.t) = "";
+let getCurrentState = (player) =>
+    getCurrentState(player)
+    |> map(Decco.optionFromJson(WebPlayback.state_decode))
+    |> map(Belt.Result.getExn);

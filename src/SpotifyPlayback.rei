@@ -87,6 +87,7 @@ let onReady:
 let onNotReady:
     (Belt.Result.t(WebPlayback.player, Decco.decodeError) => unit,
     player) => player;
+/** Fired when player state changes. It's fired with None When the player is destroyed.  */
 let onPlayerStateChanged:
     (Belt.Result.t(option(WebPlayback.state), Decco.decodeError) => unit,
     player) => player;
@@ -119,3 +120,5 @@ let seek:
 let getPlayerInfo:
     token(scope(_,_,_,_,_,_,_,_,_,_,userReadPlaybackState,_,_,_,_,_,_))
     => Js.Promise.t(Belt.Result.t(PlayerInfo.t, Decco.decodeError));
+
+let getCurrentState: player => Js.Promise.t(option(WebPlayback.state));
